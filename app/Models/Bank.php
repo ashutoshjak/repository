@@ -15,14 +15,14 @@ class Bank extends Model
         return $this->hasMany('App\Models\Branch', 'bank_id');
     }
 
-    //repository code 
+    // //repository code 
 
-    protected $table = 'banks';
+    // protected $table = 'banks';
 
-    public function __construct(BankRepositoryInterface $bankRepository ){
+    // public function __construct(BankRepositoryInterface $bankRepository ){
         
-        $this->bankRepository = $bankRepository;
+    //     $this->bankRepository = $bankRepository;
     
-    }
+    // }
 
 }

@@ -27,13 +27,13 @@ class BankController extends Controller
     public function index()
     {
         //old code
-        // $banks = Bank::all();
-        // return view('bank.index',compact('banks'));
+        $banks = Bank::all();
+        return view('bank.index',compact('banks'));
         //old code
 
-        //repository code
-        $banks = $this->bankRepository->allBanks();
-        return view('bank.index', compact('banks'));
+        // //repository code
+        // $banks = $this->bankRepository->allBanks();
+        // return view('bank.index', compact('banks'));
 
 
         
