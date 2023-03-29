@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Repositories\BankRepository;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\ServiceProvider;
+use App\Repositories\Intefaces\BankRespositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(BankRespositoryInterface::class, BankRepository::class);
     }
 
     /**

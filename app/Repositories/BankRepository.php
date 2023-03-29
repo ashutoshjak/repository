@@ -22,6 +22,28 @@ class BankRepository implements BankRespositoryInterface
     {
         return $this->bank->all();
     }
+
+    
+    public function create(array $data){
+
+        return $this->bank->create($data);
+    }
+
+    
+    public function update(array $data, $id){
+        return $this->bank::where('id',$id)->update([
+            'bankName' => $data['bankName'],
+            'grade' => $data['grade'],
+        ]);
+    }
+
+
+    public function delete($id){
+       
+        
+      return $this->bank->destroy($id);
+
+    }
 }
 
 

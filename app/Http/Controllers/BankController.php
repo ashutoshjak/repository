@@ -27,13 +27,13 @@ class BankController extends Controller
     public function index()
     {
         //old code
-        $banks = Bank::all();
-        return view('bank.index',compact('banks'));
+        // $banks = Bank::all();
+        // return view('bank.index',compact('banks'));
         //old code
 
-        // //repository code
-        // $banks = $this->bankRepository->allBanks();
-        // return view('bank.index', compact('banks'));
+        //repository code
+        $banks = $this->bankRepository->allBanks();
+        return view('bank.index', compact('banks'));
 
 
         
@@ -58,18 +58,18 @@ class BankController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+        //old code
+        // $bank =  Bank::create([
+        // 'bankName' => $request->bankName, 
+        // 'grade' => $request->grade, 
         
-        $bank =  Bank::create([
-        'bankName' => $request->bankName, 
-        'grade' => $request->grade, 
+        // ]);
+        //old code
         
-        ]);
+        $bank = $this->bankRepository->create($request->all());
         return redirect()->route('bank.index');
         
-        // $bank->bankName = $request->input('bankName');  
-        // $bank->grade = $request->input('grade');  
-        // $bank->save();
-
+        
 
     }
 
@@ -106,12 +106,16 @@ class BankController extends Controller
     public function update(Request $request,  $id)
     {
         
-        $bank = Bank::where('id',$id)->update([
-        'bankName' => $request->bankName, 
-        'grade' => $request->grade, 
-        ]
+        //old code
+        // $bank = Bank::where('id',$id)->update([
+        // 'bankName' => $request->bankName, 
+        // 'grade' => $request->grade, 
+        // ]
 
-        );
+        // );
+        //old code
+        // dd($request, $request->all());
+        $this->bankRepository->update($request->all(),$id);
         return redirect()->route('bank.index');
     }
 
@@ -124,11 +128,18 @@ class BankController extends Controller
     public function destroy($id)
     {
         // dd(Bank::destroy($id));
-        if(Bank::destroy($id)){
-            return redirect()->route('bank.index');
-         }
+       //old code
+        // if(Bank::destroy($id)){
+        //     return redirect()->route('bank.index');
+        //  }
+
+        //old code
         // Bank::destroy($id);
-        // return redirect()->route('bank.index');
+           // return redirect()->route('bank.index');
+           
+           $this->bankRepository->delete($id);
+           return redirect()->route('bank.index');
+
     }
 
     
