@@ -40,6 +40,7 @@ tr:nth-child(even) {
             <td> {{$branch->branchName}} </td>
             <td> {{$branch->branchAddress}} </td>
             <td> {{$branch->phone}} </td>
+            {{-- {{dd($branch->bank->bankName)}} --}}
             <td> {{$branch->bank->bankName}} </td>
             
             <td>

@@ -23,11 +23,14 @@ class BankRepository implements BankRespositoryInterface
         return $this->bank->all();
     }
 
+
+    
     
     public function create(array $data){
 
         return $this->bank->create($data);
     }
+
 
     
     public function update(array $data, $id){
