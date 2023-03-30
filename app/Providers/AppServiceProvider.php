@@ -27,9 +27,9 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(BankServiceInterface::class, BankService::class);
 
-
         //branch start
         $this->app->bind(BranchRepositoryInterface::class, BranchRepository::class);
+        
         $this->app->bind(BranchServiceInterface::class, BranchService::class);
     }
 

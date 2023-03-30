@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Repositories\Interfaces\BankRespositoryInterface;
+use App\Repositories\Intefaces\BankRespositoryInterface;
 use App\Services\ServiceInterfaces\BankServiceInterface;
 
 

@@ -11,20 +11,22 @@ class BranchService implements BranchServiceInterface
 {
       protected $branchRepository;
       
-      public function __construct(BranchRepositoryInterface $branchRepository, BankRespositoryInterface $bankRepository){
+      public function __construct(BranchRepositoryInterface $branchRepository){
 
         $this->branchRepository = $branchRepository;
 
-        $this->bankRepository = $bankRepository;
+        // $this->bankRepository = $bankRepository;
       }
 
 
       public function getallBranches(){
 
-        $allbranch = $this->branchRepository->allBranch();
-        $allbank = $this->bankRepository->allBanks();
+        // $allbranch = $this->branchRepository->allBranch();
+        // $allbank = $this->bankRepository->allBanks();
         
-        return [$allbranch, $allbank]; 
+        // return [$allbranch, $allbank]; 
+
+        return $this->branchRepository->allBranch();
 
         
       }
