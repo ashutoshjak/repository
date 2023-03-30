@@ -3,22 +3,41 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bank;
+
 use Illuminate\Http\Request;
 
 use App\Repositories\BankRepository;
-use App\Repositories\Interfaces\BankRepositoryInterface;
+
+use App\Services\ServiceInterfaces\BankServiceInterface;
+
 
 class BankController extends Controller
 {
-    
-    protected $bankRepository;
+    //if repository only used  //dont use BankRepository use BankRepositoryInterface
+    // protected $bankRepository;
 
 
-    public function __construct(BankRepository $bankRepository)
-    {
-        // dd($bankRepository);
-           $this->bankRepository = $bankRepository;
+    // public function __construct(BankRepository $bankRepository)
+    // {
+    //     // dd($bankRepository);
+    //        $this->bankRepository = $bankRepository;
+    // }
+
+
+
+    //Service used
+
+    protected $bankService;
+
+    public function __construct(BankServiceInterface $bankService){
+
+        $this->bankService = $bankService;
     }
+
+
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -32,7 +51,9 @@ class BankController extends Controller
         //old code
 
         //repository code
-        $banks = $this->bankRepository->allBanks();
+        // $banks = $this->bankRepository->allBanks();
+
+        $banks = $this->bankService->getallBanks();
         return view('bank.index', compact('banks'));
 
 
@@ -65,8 +86,9 @@ class BankController extends Controller
         
         // ]);
         //old code
-        
-        $bank = $this->bankRepository->create($request->all());
+        //repository code
+        // $bank = $this->bankRepository->create($request->all());
+        $bank = $this->bankService->createBank($request->all());
         return redirect()->route('bank.index');
         
         
@@ -92,7 +114,11 @@ class BankController extends Controller
      */
     public function edit($id)
     {
-        $bank = Bank::find($id);
+        //oldcode
+        // $bank = Bank::find($id);
+        //repository code
+        // $bank = $this->bankRepository->edit($id);
+        $bank = $this->bankService->editBank($id);
         return view('bank.edit',compact('bank'));
     }
 
@@ -115,7 +141,9 @@ class BankController extends Controller
         // );
         //old code
         // dd($request, $request->all());
-        $this->bankRepository->update($request->all(),$id);
+        //repository code
+        // $this->bankRepository->update($request->all(),$id);
+        $this->bankService->updateBank($request->all(),$id);
         return redirect()->route('bank.index');
     }
 
@@ -136,8 +164,10 @@ class BankController extends Controller
         //old code
         // Bank::destroy($id);
            // return redirect()->route('bank.index');
-           
-           $this->bankRepository->delete($id);
+           //repository code
+//           $this->bankRepository->delete($id);
+
+           $this->bankService->deleteBank($id);  
            return redirect()->route('bank.index');
 
     }

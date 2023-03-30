@@ -17,10 +17,10 @@ class BranchRepository implements BranchRepositoryInterface
     }
 
 //======================================================================
-    public function allBanks(){
+    // public function allBanks(){
         
-        return Bank::all();
-    }
+    //     return Bank::all();
+    // }
  //======================================================================
 
 
@@ -35,7 +35,11 @@ class BranchRepository implements BranchRepositoryInterface
 
     }
 
+  
+    public function edit($id){
 
+        return $this->branch->find($id);
+    }
 
     public function update(array $data, $id)
     {

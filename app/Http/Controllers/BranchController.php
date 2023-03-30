@@ -2,23 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Branch;
 use App\Models\Bank;
+use App\Models\Branch;
 use Illuminate\Http\Request;
 use App\Repositories\BranchRepository;
 use App\Repositories\Interfaces\BranchRepositoryInterface;
+use App\Services\ServiceInterfaces\BranchServiceInterface;
 
 class BranchController extends Controller
 {
 
+     //branch repository
+    // protected $branchRepository;
 
-    protected $branchRepository;
+    // public function __construct(BranchRepository $branchRepository)
+    // {
+    //    $this->branchRepository = $branchRepository;
+    // }    
 
-    public function __construct(BranchRepository $branchRepository)
+    protected $branchService;
+
+    public function __construct(BranchServiceInterface $branchService)
     {
-       $this->branchRepository = $branchRepository;
+       $this->branchService = $branchService;
     }    
-
+    
     /**
      * Display a listing of the resource.
      *
@@ -53,9 +61,15 @@ class BranchController extends Controller
         //     }),
         // ]);
                 
-
-
-        $branches = $this->branchRepository->allBranch();
+ 
+//        repository code
+        // $branches = $this->branchRepository->allBranch();
+        
+        
+        $obj = $this->branchService->getAllBranches();
+        
+        $branches = $obj[0];
+        // dd($branches1);
         return view('branch.index',compact('branches'));
         
     }
@@ -69,7 +83,10 @@ class BranchController extends Controller
      */
     public function create()
     {
-        $banks = $this->branchRepository->allBanks();
+        //repositorycode
+        // $banks = $this->branchRepository->allBanks();
+       $obj = $this->branchService->getAllBranches();
+        $banks = $obj[1];
         // $banks = Bank::all();
         return view('branch.create',compact('banks'));
     }
@@ -93,7 +110,9 @@ class BranchController extends Controller
         //     'bank_id'=>$request->bank_id,
         //     ]);
         //old code
-        $branch = $this->branchRepository->create($request->all());
+       //repository code
+        // $branch = $this->branchRepository->create($request->all());
+        $branch = $bank = $this->branchService->createBranch($request->all());
         return redirect()->route('branch.index');
     }
 
@@ -116,9 +135,15 @@ class BranchController extends Controller
      */
     public function edit($id)
     {
-        
-        $branch = Branch::find($id);
-        $banks = Bank::all();
+        //old code
+        // $branch = Branch::find($id);
+        // $banks = Bank::all();
+        //repository code
+        // $branch = $this->branchRepository->edit($id);
+        // $banks =  $this->branchRepository->allBanks();
+        $obj = $this->branchService->getAllBranches();
+        $branch = $this->branchService->editBranch($id);
+        $banks =  $obj[1];
         return view('branch.edit',compact('branch','banks'));
     }
 
@@ -141,8 +166,9 @@ class BranchController extends Controller
         //     ]
     
         //     );
-        $this->branchRepository->update($request->all(),$id);
-        
+        //repository code
+        //$this->branchRepository->update($request->all(),$id);
+        $this->branchService->updateBranch($request->all(),$id);
             return redirect()->route('branch.index');
     }
 
@@ -158,8 +184,9 @@ class BranchController extends Controller
         // if(Branch::destroy($id)){
         //     return redirect()->route('branch.index');
         //  }
-
-        $this->branchRepository->delete($id);
+        //repository code    
+        //$this->branchRepository->delete($id);
+        $this->branchService->deleteBranch($id);  
         return redirect()->route('branch.index');
     }
 }

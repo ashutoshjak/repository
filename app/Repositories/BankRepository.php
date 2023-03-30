@@ -31,6 +31,10 @@ class BankRepository implements BankRespositoryInterface
         return $this->bank->create($data);
     }
 
+    public function edit($id){
+
+        return $this->bank->find($id);
+    }
 
     
     public function update(array $data, $id){

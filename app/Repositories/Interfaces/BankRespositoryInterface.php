@@ -14,6 +14,8 @@ interface BankRespositoryInterface{
 
     public function delete($id);
 
+    public function edit($id);
+
 }
 
 ?>
