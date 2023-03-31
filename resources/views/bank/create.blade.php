@@ -154,7 +154,6 @@ tfoot button {
   margin-left: 15px;
 } 
 
-
 </style>
 <body>
     @include('navbar')
@@ -167,6 +166,8 @@ tfoot button {
           <tr>
             <td><label for="exampleInputEmail1">Enter Bank Name</label></td>
             <td><label for="exampleInputEmail1">Enter Class</label></td>
+            <td><label for="exampleInputEmail1">Delete</label></td>
+            
           </tr>
         </thead>
         <tbody id="myBody">
@@ -178,6 +179,9 @@ tfoot button {
             </td>
             <td>
               <div><input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Grade Name" name="grade[]"></div>
+            </td>
+            <td>
+              <button type="button" style="margin-left:15px;" onclick="myDeleteFunction(this)">Delete</button>
             </td>
           </tr>
           <tr>
@@ -193,14 +197,6 @@ tfoot button {
       </table>
     </form>
 
-    
-    
-      
-     
-    
-    
-
-
     <script>
       function myCreateFunction() {
         var tbody = document.getElementById("myBody");
@@ -209,9 +205,18 @@ tfoot button {
         rowCount.value = parseInt(rowCount.value) + 1;
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
         cell1.innerHTML = '<input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Bank Name" name="bankName[]">';
         cell2.innerHTML = '<input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Grade Name" name="grade[]">';
+        cell3.innerHTML = '<button type="button" style="margin-left:15px;" onclick="myDeleteFunction(this)">Delete</button>';
         cell1.style.padding = "20px";
+      }
+
+      function myDeleteFunction(btn) {
+        var row = btn.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+        // var rowCount = document.getElementById("rowCount");
+        // rowCount.value = parseInt(rowCount.value) - 1;
       }
     </script>
     

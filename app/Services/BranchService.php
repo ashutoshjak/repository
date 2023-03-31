@@ -49,10 +49,11 @@ class BranchService implements BranchServiceInterface
           'phone' => $phones[$i],
           'bank_id' => $bankids[$i],
          ];
-        
+
+          $this->branchRepository->create($data);
       }
 
-        return $this->branchRepository->create($data);
+      
 
       }
 

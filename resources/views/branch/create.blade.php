@@ -275,6 +275,7 @@ tfoot button {
             <td><label for="exampleInputEmail1">Enter Branch Address</label></td>
             <td><label for="exampleInputEmail1">Enter Branch Phone</label></td>
             <td><label for="exampleInputEmail1">Choose Bank</label></td>
+            <td><label for="exampleInputEmail1">Delete</label></td>
           </tr>
         </thead>
         <tbody id="myBody">
@@ -297,6 +298,9 @@ tfoot button {
                     <option value="{{ $bank->id }}"> {{ $bank->bankName }}</option>
                 @endforeach
             </select>
+            </td>
+            <td>
+              <button type="button" style="margin-left:15px;" onclick="myDeleteFunction(this)">Delete</button>
             </td>
           </tr>
           <tr>
@@ -321,6 +325,7 @@ tfoot button {
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
         var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
         cell1.innerHTML = '<input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Branch Name" name="branchName[]">';
         cell2.innerHTML = '<input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Branch Address" name="branchAddress[]">';
         cell3.innerHTML = '<input type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter Phone" name="phone[]">';
@@ -330,7 +335,14 @@ tfoot button {
                     <option value="{{ $bank->id }}"> {{ $bank->bankName }}</option>
                 @endforeach
             </select>`;
+        cell5.innerHTML = '<button type="button" style="margin-left:15px;" onclick="myDeleteFunction(this)">Delete</button>';
         cell1.style.padding = "20px";
+      }
+
+
+      function myDeleteFunction(btn) {
+        var row = btn.parentNode.parentNode;
+        row.parentNode.removeChild(row);
       }
     </script>
     

@@ -25,7 +25,7 @@
   color: white
 }
 
-        </style>
+  </style>
     </head>
     <body class="antialiased">
         @include('navbar')
@@ -47,14 +47,13 @@
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <h2> Relation with Bank and Branches</h2>
                 
-
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-6">
                         <div class="p-6">
                             <div class="flex items-center">
                                
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ route('bank.create') }}" class="underline text-gray-900 dark:text-white">Create Bank</a></div>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ route('bank.index') }}" class="underline text-gray-900 dark:text-white">View All Bank</a></div>
+                                <div class="ml-4 text-lg leading-7 font-semibold" style="margin-left: 40px"><a href="{{ route('bank.create') }}" class="underline text-gray-900 dark:text-white">Create Bank</a></div>
+                                <div class="ml-4 text-lg leading-7 font-semibold" style="margin-left: 30px"><a href="{{ route('bank.index') }}" class="underline text-gray-900 dark:text-white">View All Bank</a></div>
                             </div>
 
                             <div class="ml-12">
@@ -67,8 +66,8 @@
                         <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l py-5">
                             <div class="flex items-center">
                               
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ route('branch.create')}}" class="underline text-gray-900 dark:text-white">Create Branch</a></div>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="{{ route('branch.index')}}" class="underline text-gray-900 dark:text-white">View All Branch</a></div>
+                                <div class="ml-4 text-lg leading-7 font-semibold" style="margin-left: 20px"><a href="{{ route('branch.create')}}" class="underline text-gray-900 dark:text-white">Create Branch</a></div>
+                                <div class="ml-4 text-lg leading-7 font-semibold" style="margin-left: 30px"><a href="{{ route('branch.index')}}" class="underline text-gray-900 dark:text-white">View All Branch</a></div>
                             </div>
 
                             <div class="ml-12">
