@@ -25,11 +25,22 @@ class BankRepository implements BankRespositoryInterface
 
 
     
-    
-    public function create(array $data){
+    // public function create(array $data){
+          
+    //     return $this->bank->create($data);
+    // }
 
-        return $this->bank->create($data);
+     public function create(array $data){
+        
+        $dataentry = $this->bank->create([
+            'bankName' => $data['bankName'],
+            'grade' => $data['grade'],
+          
+        ]);  
+    
+        return $dataentry;
     }
+
 
     public function edit($id){
 

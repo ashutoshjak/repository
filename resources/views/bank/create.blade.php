@@ -12,10 +12,21 @@
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 5px;
-  width: 50%;
+
   margin: 0 auto;
 }
 
+table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+          text-align: center;
+          margin-top: 30px;
+          width: 1000px
+          
+        }
+        
+
+        
 h2 {
   text-align: center;
   font-size: 24px;
@@ -53,6 +64,7 @@ input[type="submit"] {
   float: right;
 }
 
+
 input[type="submit"]:hover {
   background-color: #45a049;
 }
@@ -60,25 +72,69 @@ input[type="submit"]:hover {
 </style>
 <body>
     @include('navbar')
-    <h2>Add Bank</h2>
     <form action="{{ route('bank.store') }}" method="post" enctype="multipart/form-data">
-        @csrf
-        <div class="form-group">
-            <label for="exampleInputEmail1"> Enter Bank Name</label>
-            <br>
-            <br>    
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Fuel Type" name="bankName">
-        </div>
-        <br>
-        <div class="form-group">
-            <label for="exampleInputEmail1"> Enter Class</label>
-            <br>
-            <br>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Fuel Price" name="grade">
-        </div>
-        <br>
-        <br>
-        <button type="submit" class="btn btn-primary">Submit</button>
+      @csrf
+      <input type="hidden" id="rowCount" name="rowCount" value="0">
+      <table id="table1">
+        <thead>
+          <h2>Add Bank</h2>
+          <tr>
+            <td><label for="exampleInputEmail1">Enter Bank Name</label></td>
+            <td><label for="exampleInputEmail1">Enter Class</label></td>
+          </tr>
+        </thead>
+        <tbody id="myBody">
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>
+              <div><input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Bank Name" name="bankName[]"></div>
+            </td>
+            <td>
+              <div><input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Grade Name" name="grade[]"></div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </td>
+            <td>
+              <button type="button" style="margin-left:15px;"  onclick="myCreateFunction()">Add</button>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
     </form>
-</body>
+
+    
+    
+      
+     
+    
+    
+
+
+    <script>
+      function myCreateFunction() {
+        var tbody = document.getElementById("myBody");
+        var row = tbody.insertRow(-1);
+        var rowCount = document.getElementById("rowCount");
+        rowCount.value = parseInt(rowCount.value) + 1;
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.innerHTML = '<input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Bank Name" name="bankName[]">';
+        cell2.innerHTML = '<input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Grade Name" name="grade[]">';
+        cell1.style.padding = "20px";
+      }
+    </script>
+    
+  </body>
 </html>
+
+
+
+
+
+
+
+

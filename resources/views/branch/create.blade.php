@@ -69,13 +69,13 @@ input[type="submit"]:hover {
             <label for="exampleInputEmail1"> Enter Branch Name</label>
             <br>
             <br>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Fuel Type" name="branchName">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Branch Name" name="branchName">
         </div>
         <br>
         <div class="form-group">
             <label for="exampleInputEmail1"> Enter Address</label>
             <br>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Fuel Price" name="branchAddress">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Branch Address" name="branchAddress">
         </div>
         <br>
 
@@ -83,7 +83,7 @@ input[type="submit"]:hover {
             <label for="exampleInputEmail1"> Enter Phone</label>
             <br>
             <br>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Fuel Price" name="phone">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Phone" name="phone">
         </div>
         <br>
 

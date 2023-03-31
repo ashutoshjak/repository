@@ -23,7 +23,7 @@ class BankService implements BankServiceInterface
 
 
       public function createBank(array $data){
-
+        
         return $this->bankRepository->create($data);
 
       }

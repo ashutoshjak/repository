@@ -76,24 +76,47 @@ class BankController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        // dd($request);
-        //old code
-        // $bank =  Bank::create([
-        // 'bankName' => $request->bankName, 
-        // 'grade' => $request->grade, 
+    // public function store(Request $request)
+    // {
+    //     // dd($request);
+    //     //old code
+    //     // $bank =  Bank::create([
+    //     // 'bankName' => $request->bankName, 
+    //     // 'grade' => $request->grade, 
         
-        // ]);
-        //old code
-        //repository code
-        // $bank = $this->bankRepository->create($request->all());
-        $bank = $this->bankService->createBank($request->all());
-        return redirect()->route('bank.index');
+    //     // ]);
+    //     //old code
+    //     //repository code
+    //     // $bank = $this->bankRepository->create($request->all());
+        
+    //     // $bank = $this->bankService->createBank($request->all());
+    //     // return redirect()->route('bank.index');
+
+       
+    //     $bank = $this->bankService->createBank($request->all());
+    //     // dd($bank);
+    //     return redirect()->route('bank.index');
+        
         
         
 
+    // }
+
+    public function store(Request $request)
+{
+    $bankNames = $request->input('bankName');
+    $grades = $request->input('grade');
+    dd($bankNames);
+    $rowCount = count($bankNames);
+    for ($i = 0; $i < $rowCount; $i++) {
+        $bank = new Bank();
+        $bank->bankName = $bankNames[$i];
+        $bank->grade = $grades[$i];
+        $bank->save();
     }
+    return redirect()->route('bank.index');
+}
+
 
     /**
      * Display the specified resource.
