@@ -34,6 +34,24 @@ class BranchService implements BranchServiceInterface
 
       public function createBranch(array $data){
 
+        $branchNames = $data['branchName'];
+        // dd($branchNames);
+        
+        $branchAddresses = $data['branchAddress'];
+        $phones = $data['phone'];
+        $bankids = $data['bank_id'];
+        $rowCount = count($branchNames);
+        for ($i = 0; $i < $rowCount; $i++) {
+        
+         $data = [
+          'branchName' => $branchNames[$i],
+          'branchAddress' => $branchAddresses[$i],
+          'phone' => $phones[$i],
+          'bank_id' => $bankids[$i],
+         ];
+        
+      }
+
         return $this->branchRepository->create($data);
 
       }

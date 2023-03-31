@@ -125,6 +125,29 @@ class BranchController extends Controller
         return redirect()->route('branch.index');
     }
 
+    // public function store(Request $request)
+    // {
+       
+    //     // dd($request->input());
+    //     $branchNames = $request->input('branchName');
+    //     // dd($branchNames);
+        
+    //     $branchAddresses = $request->input('branchAddress');
+    //     $phones = $request->input('phone');
+    //     $bankids = $request->input('bank_id');
+    //     $rowCount = count($branchNames);
+    //     for ($i = 0; $i < $rowCount; $i++) {
+    //         $branch = new Branch();
+    //         $branch->branchName = $branchNames[$i];
+    //         $branch->branchAddress = $branchAddresses[$i];
+    //         $branch->phone = $phones[$i];
+    //         $branch->bank_id = $bankids[$i];
+    //         $branch->save();
+    //     }
+    //     return redirect()->route('branch.index');
+    // }
+    
+
     /**
      * Display the specified resource.
      *

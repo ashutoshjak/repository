@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Branch Form</title>
+    <title>Bank Form</title>
 </head>
 <style>
-    form {
+    /* form {
   background-color: #f2f2f2;
   border: 1px solid #ccc;
   padding: 20px;
@@ -67,7 +67,93 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background-color: #45a049;
+} */
+/* Global Styles */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #f2f2f2;
+}
+
+/* Form Styles */
+
+form {
+  /* background-color: #f2f2f2;
+  border: 1px solid #ccc; */
+  border-radius: 5px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  float: right;
+  padding: 10px 20px;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Table Styles */
+
+table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin-top: 30px;
+  text-align: center;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-top: 0;
+  text-align: center;
+}
+
+tfoot button {
+  margin-left: 15px;
+} 
+
 
 </style>
 <body>
@@ -101,6 +187,7 @@ input[type="submit"]:hover {
             <td>
               <button type="button" style="margin-left:15px;"  onclick="myCreateFunction()">Add</button>
             </td>
+            
           </tr>
         </tfoot>
       </table>

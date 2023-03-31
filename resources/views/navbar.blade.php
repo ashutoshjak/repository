@@ -1,7 +1,9 @@
 <style>
     nav {
   background-color: #333;
+  
 }
+
 
 ul {
   list-style: none;
