@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +23,12 @@ tr:nth-child(even) {
   @include('navbar')
 
 <h2>All Bank</h2>
+
+{{-- @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif --}}
 
 <table>
   <tr>
@@ -53,8 +56,6 @@ tr:nth-child(even) {
 
         </tr>
     @endforeach
-
-
 
     </tbody>
 </table>

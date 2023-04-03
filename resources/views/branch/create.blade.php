@@ -275,7 +275,7 @@ tfoot button {
             <td><label for="exampleInputEmail1">Enter Branch Address</label></td>
             <td><label for="exampleInputEmail1">Enter Branch Phone</label></td>
             <td><label for="exampleInputEmail1">Choose Bank</label></td>
-            <td><label for="exampleInputEmail1">Delete</label></td>
+            <td><label for="exampleInputEmail1"></label></td>
           </tr>
         </thead>
         <tbody id="myBody">

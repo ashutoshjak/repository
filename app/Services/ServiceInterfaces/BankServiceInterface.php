@@ -7,7 +7,7 @@ interface BankServiceInterface
 
     public function getAllBanks();
 
-    public function createBank(array $data);
+    public function storeBank(array $data);
 
     public function editBank($id);
 

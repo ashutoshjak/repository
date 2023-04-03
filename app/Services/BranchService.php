@@ -32,7 +32,7 @@ class BranchService implements BranchServiceInterface
       }
 
 
-      public function createBranch(array $data){
+      public function storeBranch(array $data){
 
         $branchNames = $data['branchName'];
         // dd($branchNames);
@@ -50,7 +50,7 @@ class BranchService implements BranchServiceInterface
           'bank_id' => $bankids[$i],
          ];
 
-          $this->branchRepository->create($data);
+          $this->branchRepository->store($data);
       }
 
       

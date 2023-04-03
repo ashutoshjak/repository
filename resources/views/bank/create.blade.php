@@ -157,6 +157,18 @@ tfoot button {
 </style>
 <body>
     @include('navbar')
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+{{-- <p>The old input array had {{ count(old('bankName')) }} elements.</p> --}}
+
     <form action="{{ route('bank.store') }}" method="post" enctype="multipart/form-data">
       @csrf
       <input type="hidden" id="rowCount" name="rowCount" value="0">
@@ -166,24 +178,37 @@ tfoot button {
           <tr>
             <td><label for="exampleInputEmail1">Enter Bank Name</label></td>
             <td><label for="exampleInputEmail1">Enter Class</label></td>
-            <td><label for="exampleInputEmail1">Delete</label></td>
+            <td><label for="exampleInputEmail1">Action</label></td>
             
           </tr>
         </thead>
         <tbody id="myBody">
+      
+           
         </tbody>
+  
         <tfoot>
           <tr>
+            @if (old('bankName') !== null)
+            @for ($i = 0; $i < count(old('bankName')); $i++)
+            <tr>
+                <td><input type="text" placeholder="Enter Bank Name" name="bankName[]" value="{{ old('bankName')[$i] }}"></td>
+                <td><input type="text"  placeholder="Enter Grade" name="grade[]" value="{{ old('grade')[$i] }}"></td>
+                <td><button type="button" style="margin-left:15px;" onclick="myDeleteFunction(this)">Delete</button></td>
+            </tr>
+            @endfor
+        @else
             <td>
-              <div><input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Bank Name" name="bankName[]"></div>
+              <div><input type="text" class="form-control" aria-describedby="emailHelp"  placeholder="Enter Bank Name" name="bankName[]"></div>
             </td>
             <td>
-              <div><input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Grade Name" name="grade[]"></div>
+              <div><input type="text" class="form-control" aria-describedby="emailHelp"  placeholder="Enter Grade Name" name="grade[]"></div>
             </td>
             <td>
               <button type="button" style="margin-left:15px;" onclick="myDeleteFunction(this)">Delete</button>
             </td>
           </tr>
+          @endif
           <tr>
             <td>
               <button type="submit" class="btn btn-primary">Submit</button>
@@ -193,11 +218,13 @@ tfoot button {
             </td>
             
           </tr>
+          
         </tfoot>
       </table>
     </form>
 
     <script>
+
       function myCreateFunction() {
         var tbody = document.getElementById("myBody");
         var row = tbody.insertRow(-1);
@@ -206,8 +233,8 @@ tfoot button {
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
-        cell1.innerHTML = '<input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Bank Name" name="bankName[]">';
-        cell2.innerHTML = '<input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Grade Name" name="grade[]">';
+        cell1.innerHTML = `<input type="text" class="form-control" aria-describedby="emailHelp"  placeholder="Enter Bank Name" name="bankName[]">`;
+        cell2.innerHTML = `<input type="text" class="form-control" aria-describedby="emailHelp"  placeholder="Enter Grade Name" name="grade[]">`;
         cell3.innerHTML = '<button type="button" style="margin-left:15px;" onclick="myDeleteFunction(this)">Delete</button>';
         cell1.style.padding = "20px";
       }
@@ -218,6 +245,10 @@ tfoot button {
         // var rowCount = document.getElementById("rowCount");
         // rowCount.value = parseInt(rowCount.value) - 1;
       }
+
+
+      
+
     </script>
     
   </body>

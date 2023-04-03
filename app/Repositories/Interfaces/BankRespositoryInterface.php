@@ -8,7 +8,7 @@ interface BankRespositoryInterface{
     
     public function allBanks();
 
-    public function create(array $data);
+    public function store(array $data); //store change
 
     public function update(array $data,$id);
 

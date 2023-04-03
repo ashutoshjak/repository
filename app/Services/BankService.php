@@ -22,7 +22,7 @@ class BankService implements BankServiceInterface
       }
 
 
-      public function createBank(array $data){
+      public function storeBank(array $data){
         
         
         $bankNames = $data['bankName'];
@@ -35,7 +35,7 @@ class BankService implements BankServiceInterface
               'grade' => $grades[$i],
           ];
           
-        $this->bankRepository->create($data);
+        $this->bankRepository->store($data);
 
       }
     }

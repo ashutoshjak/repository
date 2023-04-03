@@ -6,7 +6,7 @@ interface BranchRepositoryInterface{
 
     public function allBranch();
 
-    public function create(array $data);
+    public function store(array $data);
 
     public function edit($id);
 

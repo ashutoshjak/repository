@@ -7,7 +7,7 @@ interface BranchServiceInterface
 
     public function getAllBranches();
 
-    public function createBranch(array $data);
+    public function storeBranch(array $data);
 
     public function editBranch($id);
 

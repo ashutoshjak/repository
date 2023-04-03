@@ -7,6 +7,7 @@ use App\Models\Bank;
 use App\Repositories\Intefaces\BankRespositoryInterface;
 
 
+
 class BankRepository implements BankRespositoryInterface
 {
 
@@ -30,7 +31,7 @@ class BankRepository implements BankRespositoryInterface
     //     return $this->bank->create($data);
     // }
 
-     public function create(array $data){
+     public function store(array $data){
         
         $dataentry = $this->bank->create([
             'bankName' => $data['bankName'],

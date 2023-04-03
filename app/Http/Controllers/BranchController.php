@@ -121,7 +121,7 @@ class BranchController extends Controller
         //old code
        //repository code
         // $branch = $this->branchRepository->create($request->all());
-        $branch =  $this->branchService->createBranch($request->all());
+        $branch =  $this->branchService->storeBranch($request->all());
         return redirect()->route('branch.index');
     }
 

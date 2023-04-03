@@ -29,7 +29,7 @@ class BranchRepository implements BranchRepositoryInterface
         return $this->branch->all()->load('bank');
     }
 
-    public function create(array $data)
+    public function store(array $data)
     {
         return $this->branch->create($data);
 

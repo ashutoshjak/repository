@@ -6,8 +6,9 @@ use App\Models\Bank;
 
 use Illuminate\Http\Request;
 
-use App\Repositories\BankRepository;
+use App\Http\Requests\BankRequest;
 
+use App\Repositories\BankRepository;
 use App\Services\ServiceInterfaces\BankServiceInterface;
 
 
@@ -76,7 +77,34 @@ class BankController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    // public function store(Request $request)
+    // {
+    //     // dd($request);
+    //     //old code
+    //     // $bank =  Bank::create([
+    //     // 'bankName' => $request->bankName, 
+    //     // 'grade' => $request->grade, 
+        
+    //     // ]);
+    //     //old code
+    //     //repository code
+    //     // $bank = $this->bankRepository->create($request->all());
+        
+    //     // $bank = $this->bankService->createBank($request->all());
+    //     // return redirect()->route('bank.index');
+
+       
+    //     $bank = $this->bankService->storeBank($request->all());
+    //     // dd($bank);
+    //     return redirect()->route('bank.index');
+    //     // ->with('success', 'Bank created successfully');
+        
+        
+        
+
+    // }
+
+    public function store(BankRequest $request)
     {
         // dd($request);
         //old code
@@ -91,16 +119,22 @@ class BankController extends Controller
         
         // $bank = $this->bankService->createBank($request->all());
         // return redirect()->route('bank.index');
-
-       
-        $bank = $this->bankService->createBank($request->all());
-        // dd($bank);
+    
+        $bank = $this->bankService->storeBank($request->validated());
+        // caeate in ta1[a,b]
+        // create [c,t1id t2
         return redirect()->route('bank.index');
+    
+        // dd($bank);
+       
+        // ->with('success', 'Bank created successfully');
         
         
         
 
     }
+
+    
 
 //     public function store(Request $request)
 // {
