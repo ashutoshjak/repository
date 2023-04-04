@@ -23,11 +23,23 @@ class BankRequest extends FormRequest
      */
     public function rules()
     {
-      //  dd(request()->all());
+    //    dd(('bankName.*'));
       
         return [
             'bankName.*' => 'required|string|max:255',
             'grade.*' => 'required|string|max:1',
         ];
     }
+
+    public function messages()
+{
+    return [
+        'bankName.*.required' => 'Please enter the bank name.',
+        'bankName.*.string' => 'The bank name must be a string.',
+        'bankName.*.max' => 'The bank name may not be greater than :max characters.',
+        'grade.*.required' => 'Please Enter the grade.',
+        'grade.*.string' => 'The grade must be a string.',
+        'grade.*.max' => 'The grade may not be greater than :max characters.',
+    ];
+}
 }

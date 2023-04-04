@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Bank;
 use App\Models\Branch;
 use Illuminate\Http\Request;
+use App\Http\Requests\BranchRequest;
 use App\Repositories\BranchRepository;
 use App\Services\ServiceInterfaces\BankServiceInterface;
 use App\Repositories\Interfaces\BranchRepositoryInterface;
@@ -106,7 +107,7 @@ class BranchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BranchRequest $request)
     {
        
         // dd($request);
@@ -121,7 +122,8 @@ class BranchController extends Controller
         //old code
        //repository code
         // $branch = $this->branchRepository->create($request->all());
-        $branch =  $this->branchService->storeBranch($request->all());
+        // $branch =  $this->branchService->storeBranch($request->all());
+        $branch =  $this->branchService->storeBranch($request->validated());
         return redirect()->route('branch.index');
     }
 

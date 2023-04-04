@@ -264,6 +264,7 @@ tfoot button {
 </style>
 <body>
     @include('navbar')
+   
     <form action="{{ route('branch.store') }}" method="post" enctype="multipart/form-data">
       @csrf
       <input type="hidden" id="rowCount" name="rowCount" value="0">
@@ -275,12 +276,52 @@ tfoot button {
             <td><label for="exampleInputEmail1">Enter Branch Address</label></td>
             <td><label for="exampleInputEmail1">Enter Branch Phone</label></td>
             <td><label for="exampleInputEmail1">Choose Bank</label></td>
-            <td><label for="exampleInputEmail1"></label></td>
+            <td><label for="exampleInputEmail1">Action</label></td>
           </tr>
         </thead>
         <tbody id="myBody">
         </tbody>
         <tfoot>
+          <tr>
+            @if (old('branchName') !== null)
+            @for ($i = 0; $i < count(old('branchName')); $i++)
+            <tr>
+              <td>
+                <div><input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Branch Name" name="branchName[]" value="{{ old('branchName')[$i] }}"> </div>
+                @error('branchName.'.$i)
+                 <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+              </td>
+              <td>
+                <div><input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Branch Address" name="branchAddress[]" value="{{ old('branchAddress')[$i] }}"></div>
+                @error('branchAddress.'.$i)
+                <div class="alert alert-danger">{{ $message }}</div>
+                 @enderror
+              </td>
+              <td>
+                <input type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter Phone" name="phone[]" value="{{ old('phone')[$i] }}">
+                @error('phone.'.$i)
+                <div class="alert alert-danger">{{ $message }}</div>
+                 @enderror
+              </td>
+              <td>
+                <select class="form-control" name="bank_id[]">
+                  <option> Select </option>
+                  @foreach($banks as $bank)
+                      {{-- <option value="{{ $bank->id }}"> {{ $bank->bankName }}</option> --}}
+                      <option value="{{ $bank->id }}" @if(old('bank_id.'.$i) == $bank->id) selected @endif> {{ $bank->bankName }}</option>
+                  @endforeach
+              </select>
+              @error('bank_id.'.$i)
+              <div class="alert alert-danger">{{ $message }}</div>
+               @enderror
+              </td>
+              <td>
+                <button type="button" style="margin-left:15px;" onclick="myDeleteFunction(this)">Delete</button>
+              </td>           
+            </tr>
+            @endfor
+        @else
           <tr>
             <td>
               <div><input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Branch Name" name="branchName[]"></div>
@@ -303,6 +344,7 @@ tfoot button {
               <button type="button" style="margin-left:15px;" onclick="myDeleteFunction(this)">Delete</button>
             </td>
           </tr>
+          @endif
           <tr>
             <td>
               <button type="submit" class="btn btn-primary">Submit</button>

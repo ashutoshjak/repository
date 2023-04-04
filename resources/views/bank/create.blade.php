@@ -158,7 +158,7 @@ tfoot button {
 <body>
     @include('navbar')
 
-    @if ($errors->any())
+    {{-- @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -166,7 +166,7 @@ tfoot button {
             @endforeach
         </ul>
     </div>
-@endif
+@endif --}}
 {{-- <p>The old input array had {{ count(old('bankName')) }} elements.</p> --}}
 
     <form action="{{ route('bank.store') }}" method="post" enctype="multipart/form-data">
@@ -192,12 +192,23 @@ tfoot button {
             @if (old('bankName') !== null)
             @for ($i = 0; $i < count(old('bankName')); $i++)
             <tr>
-                <td><input type="text" placeholder="Enter Bank Name" name="bankName[]" value="{{ old('bankName')[$i] }}"></td>
-                <td><input type="text"  placeholder="Enter Grade" name="grade[]" value="{{ old('grade')[$i] }}"></td>
+                <td>
+                  <input type="text" placeholder="Enter Bank Name" name="bankName[]" value="{{ old('bankName')[$i] }}">
+                  @error('bankName.'.$i)
+                  <div class="alert alert-danger">{{ $message }}</div>
+                   @enderror
+                </td>
+                <td>
+                  <input type="text"  placeholder="Enter Grade" name="grade[]" value="{{ old('grade')[$i] }}">
+                  @error('grade.'.$i)
+                  <div class="alert alert-danger">{{ $message }}</div>
+                   @enderror
+                </td>
                 <td><button type="button" style="margin-left:15px;" onclick="myDeleteFunction(this)">Delete</button></td>
             </tr>
             @endfor
         @else
+        <tr>
             <td>
               <div><input type="text" class="form-control" aria-describedby="emailHelp"  placeholder="Enter Bank Name" name="bankName[]"></div>
             </td>

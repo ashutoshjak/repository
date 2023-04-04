@@ -55,7 +55,14 @@ class BankController extends Controller
         // $banks = $this->bankRepository->allBanks();
 
         $banks = $this->bankService->getallBanks();
-        return view('bank.index', compact('banks'));
+        if (request()->expectsJson()) {
+            return response()->json($banks);
+        }
+        else{
+            return view('bank.index', compact('banks'));
+        }
+    
+        
 
 
         
