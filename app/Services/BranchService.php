@@ -40,6 +40,7 @@ class BranchService implements BranchServiceInterface
         $branchAddresses = $data['branchAddress'];
         $phones = $data['phone'];
         $bankids = $data['bank_id'];
+        $branches = [];
         $rowCount = count($branchNames);
         for ($i = 0; $i < $rowCount; $i++) {
         
@@ -49,11 +50,13 @@ class BranchService implements BranchServiceInterface
           'phone' => $phones[$i],
           'bank_id' => $bankids[$i],
          ];
+         
+         $branches[] = $data;
 
           $this->branchRepository->store($data);
       }
 
-      
+      return $branches;      
 
       }
 

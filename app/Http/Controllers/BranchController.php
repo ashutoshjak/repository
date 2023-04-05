@@ -78,6 +78,10 @@ class BranchController extends Controller
 
 
         $branches = $this->branchService->getAllBranches();  
+        if (request()->expectsJson()) {
+            return response()->json($branches);
+        }
+       
         return view('branch.index',compact('branches'));
         
     }
@@ -124,6 +128,13 @@ class BranchController extends Controller
         // $branch = $this->branchRepository->create($request->all());
         // $branch =  $this->branchService->storeBranch($request->all());
         $branch =  $this->branchService->storeBranch($request->validated());
+        if($request->expectsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Branch created successfully',
+                'branch' => $branch
+            ]);
+        }
         return redirect()->route('branch.index');
     }
 
@@ -203,7 +214,15 @@ class BranchController extends Controller
         //     );
         //repository code
         //$this->branchRepository->update($request->all(),$id);
+       
         $this->branchService->updateBranch($request->all(),$id);
+        if ($request->expectsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Branch updated successfully',
+                
+            ]);
+        } 
             return redirect()->route('branch.index');
     }
 
@@ -221,7 +240,14 @@ class BranchController extends Controller
         //  }
         //repository code    
         //$this->branchRepository->delete($id);
-        $this->branchService->deleteBranch($id);  
+        $this->branchService->deleteBranch($id);
+        if(request()->expectsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Branch deleted successfully',
+            ]);
+        }
+         
         return redirect()->route('branch.index');
     }
 }

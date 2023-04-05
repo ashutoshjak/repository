@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BankRequest;
 
 use App\Repositories\BankRepository;
+
 use App\Services\ServiceInterfaces\BankServiceInterface;
 
 
@@ -29,10 +30,12 @@ class BankController extends Controller
     //Service used
 
     protected $bankService;
+    //public $test;
 
     public function __construct(BankServiceInterface $bankService){
 
         $this->bankService = $bankService;
+        // $this->test = $test;
     }
 
 
@@ -58,9 +61,9 @@ class BankController extends Controller
         if (request()->expectsJson()) {
             return response()->json($banks);
         }
-        else{
-            return view('bank.index', compact('banks'));
-        }
+        
+        return view('bank.index', compact('banks'));
+        
     
         
 
@@ -113,12 +116,13 @@ class BankController extends Controller
 
     public function store(BankRequest $request)
     {
-        // dd($request);
+        
+        // dd($request->input()['bankName']);
         //old code
         // $bank =  Bank::create([
         // 'bankName' => $request->bankName, 
         // 'grade' => $request->grade, 
-        
+        // $this->test = $request;
         // ]);
         //old code
         //repository code
@@ -127,17 +131,29 @@ class BankController extends Controller
         // $bank = $this->bankService->createBank($request->all());
         // return redirect()->route('bank.index');
     
+        // dd($request);
         $bank = $this->bankService->storeBank($request->validated());
         // caeate in ta1[a,b]
         // create [c,t1id t2
+
+        // $request = new Request();
+
+        if($request->expectsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Bank created successfully',
+                'bank' => $bank
+            ]);
+        }
+      
         return redirect()->route('bank.index');
+      
+        
     
         // dd($bank);
        
         // ->with('success', 'Bank created successfully');
-        
-        
-        
+          
 
     }
 
@@ -208,7 +224,17 @@ class BankController extends Controller
         //repository code
         // $this->bankRepository->update($request->all(),$id);
         $this->bankService->updateBank($request->all(),$id);
+        if ($request->expectsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Bank updated successfully',
+                
+            ]);
+        } 
         return redirect()->route('bank.index');
+        
+        
+        // return redirect()->route('bank.index');
     }
 
     /**
@@ -231,8 +257,17 @@ class BankController extends Controller
            //repository code
 //           $this->bankRepository->delete($id);
 
-           $this->bankService->deleteBank($id);  
-           return redirect()->route('bank.index');
+      $this->bankService->deleteBank($id);  
+           if(request()->expectsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Bank deleted successfully',
+            ]);
+        }
+       
+         return redirect()->route('bank.index');
+       
+        //    return redirect()->route('bank.index');
 
     }
 

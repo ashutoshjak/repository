@@ -169,7 +169,7 @@ tfoot button {
 @endif --}}
 {{-- <p>The old input array had {{ count(old('bankName')) }} elements.</p> --}}
 
-    <form action="{{ route('bank.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('bank.store') }}" method="post" enctype="multipart/form-data">  
       @csrf
       <input type="hidden" id="rowCount" name="rowCount" value="0">
       <table id="table1">

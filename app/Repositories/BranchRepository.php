@@ -24,7 +24,8 @@ class BranchRepository implements BranchRepositoryInterface
  //======================================================================
 
 
- public function allBranch(){
+    public function allBranch()
+    {
         
         return $this->branch->all()->load('bank');
     }

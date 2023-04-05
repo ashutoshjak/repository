@@ -21,5 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::resource('allbanks', BankController::class);
-
+Route::resource('banks', BankController::class);
+Route::resource('branches', BranchController::class);

@@ -26,18 +26,22 @@ class BankService implements BankServiceInterface
         
         
         $bankNames = $data['bankName'];
-        // dd($bankNames);
         $grades = $data['grade'];
+        $banks = [];
         $rowCount = count($bankNames);
         for ($i =0; $i < $rowCount; $i++) {
           $data = [
               'bankName' => $bankNames[$i],
               'grade' => $grades[$i],
           ];
-          
+        
+        $banks[] = $data;
+
         $this->bankRepository->store($data);
 
       }
+      return $banks;
+
     }
 
 

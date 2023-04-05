@@ -90,7 +90,9 @@ input[type="submit"]:hover {
             <select class="form-control" name="bank_id">
                 <option> Select </option>
                 @foreach($banks as $bank)
-                    <option value="{{ $bank->id }}"> {{ $bank->bankName }}</option>
+                    {{-- <option value="{{ $bank->id }}"> {{ $bank->bankName }}</option> --}}
+                    <option value="{{ $bank->id }}" @if(old('bank_id') == $bank->id) selected @endif> {{ $bank->bankName }}</option>
+
                 @endforeach
             </select>
         </div>
