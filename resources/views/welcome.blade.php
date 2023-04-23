@@ -84,5 +84,38 @@
               
             </div>
         </div>
+
+        {{-- <div id="example">
+
+         
+
+        </div>
+        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/components/Example.js') }}"></script>
+             --}}
+        
+        <div id="index">
+
+         
+         </div>
+        {{-- <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/components/bank/index.js') }}"></script> --}}
+             
+        <div id="create">
+
+         
+        </div>
+
+
+
+        <div id="edit">
+
+         
+        </div>
+        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        {{-- <script type="text/javascript" src="{{ asset('js/components/bank/create.js') }}"></script> --}}
+            
+
+      
     </body>
 </html>

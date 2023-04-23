@@ -13,3 +13,12 @@ require('./bootstrap');
  */
 
 require('./components/Example');
+
+require('./components/bank/create');
+
+require('./components/bank/edit');
+
+require('./components/bank/index');
+
+
+

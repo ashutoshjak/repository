@@ -6,10 +6,11 @@ use App\Models\Bank;
 
 use Illuminate\Http\Request;
 
+use App\Services\BankService;
+
 use App\Http\Requests\BankRequest;
 
 use App\Repositories\BankRepository;
-
 use App\Services\ServiceInterfaces\BankServiceInterface;
 
 
@@ -32,7 +33,7 @@ class BankController extends Controller
     protected $bankService;
     //public $test;
 
-    public function __construct(BankServiceInterface $bankService){
+    public function __construct(BankService $bankService){
 
         $this->bankService = $bankService;
         // $this->test = $test;
@@ -237,6 +238,26 @@ class BankController extends Controller
         // return redirect()->route('bank.index');
     }
 
+
+
+
+
+    public function updateMultiple(Request $request)
+{
+    
+    // dd($request);
+    $this->bankService->updateMultipleBanks($request->all());
+    // dd('abc');
+    if ($request->expectsJson()) {
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Banks updated successfully',
+            'data' => $request->input()
+        ]);
+    }
+}
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -270,6 +291,22 @@ class BankController extends Controller
         //    return redirect()->route('bank.index');
 
     }
+
+
+    public function deleteMultiple(Request $request)
+{
+    $ids = $request->input('ids');
+
+    $this->bankService->deleteMultipleBanks($ids);
+
+    if ($request->expectsJson()) {
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Banks deleted successfully',
+        ]);
+    }
+}
+
 
     
     

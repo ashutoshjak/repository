@@ -2,7 +2,7 @@
 
 namespace App\Repositories;   //folder 
 
-use App\Models\Bank;   
+use App\Models\Bank;
 
 use App\Repositories\Intefaces\BankRespositoryInterface;
 
@@ -25,46 +25,73 @@ class BankRepository implements BankRespositoryInterface
     }
 
 
-    
+
     // public function create(array $data){
-          
+
     //     return $this->bank->create($data);
     // }
 
-     public function store(array $data){
-        
+    public function store(array $data)
+    {
+
         $dataentry = $this->bank->create([
             'bankName' => $data['bankName'],
             'grade' => $data['grade'],
-          
-        ]);  
-    
+
+        ]);
+
         return $dataentry;
     }
 
 
-    public function edit($id){
+    public function edit($id)
+    {
 
         return $this->bank->find($id);
     }
 
-    
-    public function update(array $data, $id){
-        return $this->bank::where('id',$id)->update([
+
+    public function update(array $data, $id)
+    {
+        return $this->bank::where('id', $id)->update([
             'bankName' => $data['bankName'],
             'grade' => $data['grade'],
         ]);
     }
 
 
-    public function delete($id){
-       
-        
-      return $this->bank->destroy($id);
+    // public function updateMultiple(array $data)
+    // {
 
+
+    //     foreach ($data as $record) {
+    //         $id = $record['id'];
+    //         $bankName = $record['bankName'];
+    //         $grade = $record['grade'];
+
+    //         $updateData = [
+    //             'bankName' => $bankName,
+    //             'grade' => $grade,
+    //         ];
+
+    //         $this->update($updateData, $id);
+    //     }
+    // }
+
+    // public function updateMultiple(array $data, $id)
+    // {
+
+    //     $this->update($data, $id);
+       
+    // }
+
+
+
+
+    public function delete($id)
+    {
+
+
+        return $this->bank->destroy($id);
     }
 }
-
-
-
-?>
